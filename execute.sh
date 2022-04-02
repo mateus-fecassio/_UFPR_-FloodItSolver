@@ -9,7 +9,7 @@ make
 for entry in ${ITEMS[@]}
 do
     name=$(echo $entry | awk -F"/" '{print $3}')
-    echo "$name"
+    echo "TESTING $name ..."
 
     $PROG < $entry > temp.tmp
     cat $entry temp.tmp | $VERIFICA
@@ -20,8 +20,8 @@ do
       else
         echo "FAIL"
     fi
+    echo ""
+    echo "Executing make purge"
+    make purge
 
 done
-
-
-cat 40X40.txt teste.txt | ./anima
