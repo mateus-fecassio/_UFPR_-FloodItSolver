@@ -118,20 +118,32 @@ void floodFill(int **m, int rows, int cols, int r, int c, int init_c, int color)
 } //OK
 
 
+// int is_solved(int **m, int r, int c) {
+//     int first_c = m[0][0];
+// 	int sum = 0;
+// 	int result = r*c*first_c;
+
+//     for (int i = 0; i < r; ++i) {
+//         for (int j = 0; j < c; ++j) {
+//             sum += m[i][j];
+//         }
+//     }
+
+// 	if (sum != result)
+// 		return 0;
+//     return 1;    
+// }
+
+
 int is_solved(int **m, int r, int c) {
     int first_c = m[0][0];
-	int sum = 0;
-	int result = r*c*first_c;
-
     for (int i = 0; i < r; ++i) {
         for (int j = 0; j < c; ++j) {
-            sum += m[i][j];
+            if (m[i][j] != first_c)
+				return 0;
         }
     }
-
-	if (sum != result)
-		return 0;
-    return 1;    
+	return 1;
 }
 
 
