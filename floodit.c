@@ -25,6 +25,7 @@
 
 
 //------------------------------------------FUNÇÕES IMPLEMENTADAS
+//AUXILIARES
 int** allocate_matrix(int rows, int cols) {
     int **matrix = (int**) malloc(rows * sizeof(int*));
 
@@ -41,32 +42,6 @@ int** copy_matrix(int **matrix, Game *g) {
 		memcpy(matrix[i], g->map[i], (g->columns*sizeof(int)));
 	}
     return matrix;
-} //OK
-
-Game read_g(FILE *file) {
-	Game game_instance;
-
-	fscanf(file, "%d %d %d\n", &(game_instance.lines), &(game_instance.columns), &(game_instance.colors));
-
-	game_instance.map = allocate_matrix(game_instance.lines, game_instance.columns);
-
-	int i;
-	int j;
-	for (i = 0; i < game_instance.lines; ++i) {
-		game_instance.map[i] = (int*) calloc(game_instance.columns, sizeof(int));
-		for (j = 0; j < game_instance.columns; ++j) {
-			fscanf(file, "%d", &(game_instance.map[i][j]));
-		}
-	}
-	return game_instance;
-} //OK
-
-Solution init_solution(void) {
-	Solution game_solution;
-
-	game_solution.steps = 0;
-	game_solution.sequence = (int*) calloc (SOLUTION_SIZE, sizeof(int));
-	return game_solution;
 } //OK
 
 void print_map(Game *g) {
@@ -101,6 +76,44 @@ void print_array(int *array, int size) {
 	printf("\n");
 } //OK
 
+void print_solution(Solution *s) {
+    printf("%d\n", s->steps);
+    for (int i = 0; i < s->steps; ++i) {
+        printf("%d ", s->sequence[i]);
+    }
+    printf("\n");
+} //OK
+
+
+//ESTRUTURAS DE DADOS
+Game read_g(FILE *file) {
+	Game game_instance;
+
+	fscanf(file, "%d %d %d\n", &(game_instance.lines), &(game_instance.columns), &(game_instance.colors));
+
+	game_instance.map = allocate_matrix(game_instance.lines, game_instance.columns);
+
+	int i;
+	int j;
+	for (i = 0; i < game_instance.lines; ++i) {
+		game_instance.map[i] = (int*) calloc(game_instance.columns, sizeof(int));
+		for (j = 0; j < game_instance.columns; ++j) {
+			fscanf(file, "%d", &(game_instance.map[i][j]));
+		}
+	}
+	return game_instance;
+} //OK
+
+Solution init_solution(void) {
+	Solution game_solution;
+
+	game_solution.steps = 0;
+	game_solution.sequence = (int*) calloc (SOLUTION_SIZE, sizeof(int));
+	return game_solution;
+} //OK
+
+
+//MANIPULAÇÃO DA SOLUÇÃO
 void floodFill(int **m, int rows, int cols, int r, int c, int init_c, int color) {
     m[r][c] = color;
     if (r < rows - 1 && m[r + 1][c] == init_c){
@@ -117,24 +130,6 @@ void floodFill(int **m, int rows, int cols, int r, int c, int init_c, int color)
     }
 } //OK
 
-
-// int is_solved(int **m, int r, int c) {
-//     int first_c = m[0][0];
-// 	int sum = 0;
-// 	int result = r*c*first_c;
-
-//     for (int i = 0; i < r; ++i) {
-//         for (int j = 0; j < c; ++j) {
-//             sum += m[i][j];
-//         }
-//     }
-
-// 	if (sum != result)
-// 		return 0;
-//     return 1;    
-// }
-
-
 int is_solved(int **m, int r, int c) {
     int first_c = m[0][0];
     for (int i = 0; i < r; ++i) {
@@ -144,17 +139,7 @@ int is_solved(int **m, int r, int c) {
         }
     }
 	return 1;
-}
-
-
-void print_solution(Solution *s) {
-    printf("%d\n", s->steps);
-    for (int i = 0; i < s->steps; ++i) {
-        printf("%d ", s->sequence[i]);
-    }
-    printf("\n");
-}
-
+} //OK
 
 int count_color_region(int **m, int rows, int cols)
 {
@@ -171,7 +156,7 @@ int count_color_region(int **m, int rows, int cols)
         }
     }
     return total;
-}
+} //OK
 
 //------------------------------------------
 
@@ -215,6 +200,7 @@ int main(void){
 			floodFill(m_aux, game_instance.lines, game_instance.columns, 0, 0, m_aux[0][0], i);
 			if (is_solved(m_aux, game_instance.lines, game_instance.columns)) {
                 game_solution.sequence[game_solution.steps++] = i;
+
                 print_solution(&game_solution);
 
                 return 0;
@@ -241,5 +227,4 @@ int main(void){
 	print_solution(&game_solution);
 	return 0;
 }
-
 //------------------------------------------
