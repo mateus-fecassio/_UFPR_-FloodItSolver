@@ -25,6 +25,7 @@ Foi restringido a 3.000 passos o máximo para retornar uma possível solução.
 
 ## AUTORES
 Anna Caroline Bozzi (GRR20173532);
+
 Mateus Felipe de Cássio Ferreira (GRR20176123).
 ## DISCIPLINA: CI209 - Inteligência Artificial
 Orientador: Fabiano Silva
