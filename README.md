@@ -15,13 +15,14 @@ Esse é um jogo de estratégia, onde o objetivo é ir escolhendo as cores, confo
  
 ## DESCRIÇÃO DA IMPLEMENTAÇÃO REALIZADA
 Sua implementação consiste em 3 estruturas de dados dados:
-matriz representando a instância inicial;
-matriz auxiliar para o teste das soluções;
-e uma fila para o controle de cores.
+ -matriz representando a instância inicial;
+ -matriz auxiliar para o teste das soluções;
+ -e uma fila para o controle de cores.
 
 A heurística aplicada se assemelha ao algoritmo de Busca Gulosa de Melhor Escolha: para uma instância inicial testa-se todas as opções, escolhendo a que apresenta melhor desempenho (solução em menos passos). Essa heurística é iimplementada na função count_color_region principalmente. Dada a cor escolhida para iniciar, ele conta quantas regiões foram pintadas com essa cor, e assim, quando todas as cores são testadas ele pega a que apresentar a maior contagem, e altera no mapa original. Ou seja, a cor que apresentou mais vizinhos do estado atual, seja ele inicial ou não.
 Adiciona-se essa cor como parte da solução, e assim serão sucessivos passos até que tenhamos a inundação completa do mapa e a cor solução.
 Foi restringido a 3.000 passos o máximo para retornar uma possível solução.
+
 ## AUTORES
 Anna Caroline Bozzi (GRR20173532);
 Mateus Felipe de Cássio Ferreira (GRR20176123).
