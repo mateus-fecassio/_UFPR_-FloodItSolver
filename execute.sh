@@ -20,8 +20,8 @@ do
       else
         echo "FAIL"
     fi
-    echo ""
-    echo "Executing make purge"
-    make purge
-
 done
+
+echo ""
+echo "Executing make purge"
+make purge
