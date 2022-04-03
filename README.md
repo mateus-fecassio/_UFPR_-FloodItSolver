@@ -7,7 +7,6 @@ ou ./execute.sh, irá ler os arquivos da pasta input, rodar o solução e verifi
 Esse é um jogo de estratégia, onde o objetivo é ir escolhendo as cores, conforme acha que o tabuleiro se inundará mais rápido (menos etapas possíveis).
 É considerado um jogo  np difícil a partir de 3 núcleos (Um jogo onde o número mínimo de operações de inundação é NP-difícil para um número de cores >= 3.) 
  
-https://github.com/ricatosin/flooditsolver https://github.com/almeidaraul/floodit-solver/blob/main/leiame.txt https://github.com/Laionluis/Floodit-Solver-in-C/ blob/master/leiame.txt
 ## DESCRIÇÃO DA IMPLEMENTAÇÃO REALIZADA
 Sua implementação consiste em 3 estruturas de dados dados:
 matriz representando a instância inicial;
