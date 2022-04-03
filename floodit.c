@@ -19,7 +19,7 @@
 #include "floodit.h"
 #include "stack.h"
 
-#define SOLUTION_SIZE 2000
+#define SOLUTION_SIZE 3000
 
 
 
@@ -84,7 +84,6 @@ void print_solution(Solution *s) {
     printf("\n");
 } //OK
 
-
 //ESTRUTURAS DE DADOS
 Game read_g(FILE *file) {
 	Game game_instance;
@@ -115,7 +114,7 @@ Solution init_solution(void) {
 
 //MANIPULAÇÃO DA SOLUÇÃO
 void floodFill(int **m, int rows, int cols, int r, int c, int init_c, int color) {
-    m[r][c] = color;
+	m[r][c] = color;
     if (r < rows - 1 && m[r + 1][c] == init_c){
         floodFill(m, rows, cols, r + 1, c, init_c, color);
     }
@@ -131,10 +130,10 @@ void floodFill(int **m, int rows, int cols, int r, int c, int init_c, int color)
 } //OK
 
 int is_solved(int **m, int r, int c) {
-    int first_c = m[0][0];
+    int color = m[0][0];
     for (int i = 0; i < r; ++i) {
         for (int j = 0; j < c; ++j) {
-            if (m[i][j] != first_c)
+            if (m[i][j] != color)
 				return 0;
         }
     }
@@ -143,15 +142,16 @@ int is_solved(int **m, int r, int c) {
 
 int count_color_region(int **m, int rows, int cols)
 {
-    int first_c = m[0][0];
+    int color = m[0][0];
     int total = 0;
 
     int i, j;
     for (i = 0; i < rows; ++i) {
-        for (j = 0; (m[i][j] == first_c && j < cols); ++j) {
+        for (j = 0; (m[i][j] == color && j < cols); ++j) {
             total++;
         }
-        if (i + 1 < rows && m[i+1][0] != first_c && m[i+1][1] != first_c) {
+		//otimização
+        if (i + 1 < rows && m[i+1][0] != color && m[i+1][1] != color) {
             break;
         }
     }
@@ -200,7 +200,6 @@ int main(void){
 			floodFill(m_aux, game_instance.lines, game_instance.columns, 0, 0, m_aux[0][0], i);
 			if (is_solved(m_aux, game_instance.lines, game_instance.columns)) {
                 game_solution.sequence[game_solution.steps++] = i;
-
                 print_solution(&game_solution);
 
                 return 0;
@@ -224,7 +223,13 @@ int main(void){
 		floodFill(game_instance.map, game_instance.lines, game_instance.columns, 0, 0, game_instance.map[0][0], color);
 		game_solution.sequence[game_solution.steps++] = color;
     }
-	print_solution(&game_solution);
+
+	if (game_solution.steps < SOLUTION_SIZE) {
+		print_solution(&game_solution);
+	} else {
+		fprintf(stdout, "Não foi possível resolver este problema com %d movimentos.\n", SOLUTION_SIZE);
+	}
+
 	return 0;
 }
 //------------------------------------------
