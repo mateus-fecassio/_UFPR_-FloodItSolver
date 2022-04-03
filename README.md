@@ -1,12 +1,16 @@
 #FLOODIT SOLVER
 ## COMO UTILIZAR
 Para compilar: make 
+
 Para executar : ./floodit < entrada.txt
+
 Ou ainda há um script ./execute.sh, que irá ler os arquivos da pasta input, rodar a solução, e verificar se satisfaz a instância do jogo.
+
 Arquivo de entrada: Número de linhas(n_linhas), número de colunas(n_colunas), número de cores(n_cores), e por fim o mapa mapa. A dimensão do mapa é limitado em 1000 linhas x 1000 colunas.
-ou ./execute.sh, irá ler os arquivos da pasta input, rodar o solução e verificar se está satisfeito
+
 ## O QUE É JOGO
 Esse é um jogo de estratégia, onde o objetivo é ir escolhendo as cores, conforme acha que o tabuleiro se inundará mais rápido (menos etapas possíveis).
+
 É considerado um jogo  np difícil a partir de 3 núcleos (Um jogo onde o número mínimo de operações de inundação é NP-difícil para um número de cores >= 3.) 
  
 ## DESCRIÇÃO DA IMPLEMENTAÇÃO REALIZADA
