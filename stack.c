@@ -2,6 +2,7 @@
 #include "stack.h"
 #include "floodit.h"
 
+//------------------------------------------FUNÇÕES IMPLEMENTADAS
 State* create_state(int color) {
     State *new = (State*) malloc(sizeof(State));
     new->color = color;
@@ -9,7 +10,7 @@ State* create_state(int color) {
     new->prev = NULL;    
 
     return new;
-}
+} //OK
 
 void push(StateQueue *queue, State *s) {    
     if(!queue->top) {
@@ -18,7 +19,7 @@ void push(StateQueue *queue, State *s) {
         s->prev = queue->top;
     }
     queue->top = s;
-}
+} //OK
 
 State* pop(StateQueue *queue) {
     if (!queue->top) {
@@ -33,4 +34,5 @@ State* pop(StateQueue *queue) {
     free(aux);
 
     return r;
-}
+} //OK
+//------------------------------------------

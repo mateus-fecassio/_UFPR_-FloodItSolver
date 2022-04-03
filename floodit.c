@@ -1,18 +1,3 @@
-/*
-
---- AUTORES: 
-- Anna Caroline Bozzi;
-- Mateus Felipe de Cássio Ferreira;
-
---- GRR: 
-- 2017
-- 20176123
-
---- DISCIPLINA: CI209 - Inteligência Artificial
-- Orientador: Fabiano Silva
-
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,8 +5,6 @@
 #include "stack.h"
 
 #define SOLUTION_SIZE 3000
-
-
 
 
 //------------------------------------------FUNÇÕES IMPLEMENTADAS
