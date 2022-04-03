@@ -67,6 +67,7 @@ void print_solution(Solution *s) {
     printf("\n");
 } //OK
 
+
 //ESTRUTURAS DE DADOS
 Game read_g(FILE *file) {
 	Game game_instance;
@@ -123,8 +124,7 @@ int is_solved(int **m, int r, int c) {
 	return 1;
 } //OK
 
-int count_color_region(int **m, int rows, int cols)
-{
+int count_color_region(int **m, int rows, int cols) {
     int color = m[0][0];
     int total = 0;
 
